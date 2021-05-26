@@ -1,9 +1,11 @@
 import { nanoid } from "nanoid";
 import "./photos.css";
 import React, { useEffect, useState } from "react";
+import Modal from "./modal";
 
 export default function Photos() {
   const [phList, setPhList] = useState([]);
+  // const [index, setIndex] = useState(-1);
 
   useEffect(() => {
     async function getPhotosList() {
@@ -23,7 +25,7 @@ export default function Photos() {
   const list = phList.map((item) => {
     return (
       <div className="item" key={nanoid()}>
-        {/* <div>{item.id}</div> */}
+        <div>{item.id}</div>
         <img alt={item.url} src={item.url}></img>
       </div>
     );
@@ -48,6 +50,7 @@ export default function Photos() {
           </a>
         </div>
       </div>
+      <Modal/>
     </>
   );
 }
