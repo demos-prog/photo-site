@@ -3,16 +3,14 @@ import "./photos.css";
 import Close from "./img/Close.png";
 import React from "react";
 
-export default function Modal() {
-
-  
+export default function Modal(props) {
   return (
     <div className="modal">
       <div className="modalBody">
         <div className="modalImgPlusInfo">
           <div className="modalImg">
             <img
-              src="https://picsum.photos/id/237/600/400"
+              src={props.item.url}
               alt="https://picsum.photos/id/237/600/400"
             ></img>
           </div>
@@ -23,7 +21,11 @@ export default function Modal() {
             </div>
           </div>
           <div className="close">
-            <img src={Close} alt="close"></img>
+            <img
+              onClick={() => props.setIndex(-1)}
+              src={Close}
+              alt="close"
+            ></img>
           </div>
         </div>
         <form className="form">
@@ -32,7 +34,7 @@ export default function Modal() {
           <button type="submit">Leave comment</button>
         </form>
       </div>
-      <div className="modalBG"></div>
+      <div onClick={() => props.setIndex(-1)} className="modalBG"></div>
     </div>
   );
 }

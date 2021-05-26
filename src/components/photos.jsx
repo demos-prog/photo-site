@@ -5,7 +5,7 @@ import Modal from "./modal";
 
 export default function Photos() {
   const [phList, setPhList] = useState([]);
-  // const [index, setIndex] = useState(-1);
+  const [index, setIndex] = useState(-1);
 
   useEffect(() => {
     async function getPhotosList() {
@@ -22,11 +22,12 @@ export default function Photos() {
   //  return await fetch(url)
   // }
 
-  const list = phList.map((item) => {
+  const list = phList.map((item, ind) => {
     return (
       <div className="item" key={nanoid()}>
         <div>{item.id}</div>
-        <img alt={item.url} src={item.url}></img>
+        <img onClick={() => setIndex(ind)} alt={item.url} src={item.url}></img>
+        {ind === index && <Modal item={item} setIndex={setIndex} />}
       </div>
     );
   });
@@ -50,7 +51,6 @@ export default function Photos() {
           </a>
         </div>
       </div>
-      <Modal/>
     </>
   );
 }
