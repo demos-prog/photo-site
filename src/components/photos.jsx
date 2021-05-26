@@ -1,4 +1,5 @@
 import { nanoid } from "nanoid";
+import "./photos.css";
 import React, { useEffect, useState } from "react";
 
 export default function Photos() {
@@ -21,19 +22,32 @@ export default function Photos() {
 
   const list = phList.map((item) => {
     return (
-      <div key={nanoid()}>
-        <div>{item.id}</div>
-        <img src={item.url}></img>
+      <div className="item" key={nanoid()}>
+        {/* <div>{item.id}</div> */}
+        <img alt={item.url} src={item.url}></img>
       </div>
     );
   });
 
   return (
     <>
-      <div>
-        <strong>TEST APP</strong>
+      <div className="container">
+        <div className="header">
+          <strong>
+            <div>TEST APP</div>
+          </strong>
+        </div>
+        <div className="list">{list}</div>
+        <div className="footer">
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://sites.google.com/view/burlykodmitry/%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F-%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0"
+          >
+            Dmitry
+          </a>
+        </div>
       </div>
-      {list}
     </>
   );
 }
