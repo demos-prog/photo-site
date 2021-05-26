@@ -18,14 +18,9 @@ export default function Photos() {
     getPhotosList();
   }, []);
 
-  // async function getImg (url){
-  //  return await fetch(url)
-  // }
-
   const list = phList.map((item, ind) => {
     return (
       <div className="item" key={nanoid()}>
-        <div>{item.id}</div>
         <img onClick={() => setIndex(ind)} alt={item.url} src={item.url}></img>
         {ind === index && <Modal item={item} setIndex={setIndex} />}
       </div>
