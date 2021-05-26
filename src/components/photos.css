@@ -99,11 +99,11 @@ h6 {
 }
 
 .item {
-  cursor: pointer;
   margin: 20px auto;
 }
 
 .item img {
+  cursor: pointer;
   object-fit: cover;
   object-position: center;
 }
@@ -122,7 +122,6 @@ h6 {
 
 .modal {
   display: flex;
-  /* display: none; */
   position: absolute;
   top: 0;
   left: 0;
