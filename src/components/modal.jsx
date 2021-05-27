@@ -7,6 +7,8 @@ import { nanoid } from "nanoid";
 export default function Modal(props) {
   const link = `https://picsum.photos/id/${props.item.id}/600/400`;
   const [comments, setComments] = useState([]);
+  const [name, setName] = useState("");
+  const [commen, setCommen] = useState("");
 
   useEffect(() => {
     async function getComments() {
@@ -34,6 +36,28 @@ export default function Modal(props) {
     getComments();
   }, [props.item.id]);
 
+  async function sendPost(e) {
+    e.preventDefault();
+    const now = new Date();
+    const id = Math.round(Math.random() * 100 + Math.round(Math.random() * 10));
+    const newComment = { id: id, text: commen, date: now };
+    const fch = await fetch(
+      `https://boiling-refuge-66454.herokuapp.com/images/${props.item.id}/comments`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json;charset=utf-8" },
+        body: JSON.stringify(newComment),
+      }
+    );
+    if (fch.ok) {
+      alert("comment sended");
+    } else {
+      alert("not ok");
+    }
+    setName("");
+    setCommen("");
+  }
+
   return (
     <div className="modal">
       <div className="modalBody">
@@ -50,9 +74,19 @@ export default function Modal(props) {
             ></img>
           </div>
         </div>
-        <form className="form">
-          <input type="text" placeholder="your name"></input>
-          <input type="text" placeholder="your comment"></input>
+        <form onSubmit={sendPost} className="form">
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="your name"
+          ></input>
+          <input
+            type="text"
+            value={commen}
+            onChange={(e) => setCommen(e.target.value)}
+            placeholder="your comment"
+          ></input>
           <button type="submit">Leave comment</button>
         </form>
       </div>
