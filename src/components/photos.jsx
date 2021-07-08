@@ -2,10 +2,12 @@ import { nanoid } from "nanoid";
 import "./photos.css";
 import React, { useEffect, useState } from "react";
 import Modal from "./modal";
+import loadingImg from "./img/Double Ring-1s-374px.png";
 
 export default function Photos() {
   const [phList, setPhList] = useState([]);
   const [index, setIndex] = useState(-1);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function getPhotosList() {
@@ -14,6 +16,7 @@ export default function Photos() {
       );
       const photosList = await fch.json();
       setPhList(photosList);
+      setIsLoading(false);
     }
     getPhotosList();
   }, []);
@@ -35,7 +38,9 @@ export default function Photos() {
             <div>TEST APP</div>
           </strong>
         </div>
-        <div className="list">{list}</div>
+        <div className="list">
+          {isLoading ? <img id="loader" src={loadingImg} alt="Loading"></img> : list}
+        </div>
         <div className="footer">
           <a
             target="_blank"
