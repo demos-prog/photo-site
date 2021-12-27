@@ -21,6 +21,14 @@ export default function Photos() {
     getPhotosList();
   }, []);
 
+  useEffect(() => {
+    if (index === -1) {
+      document.body.style.overflow = "";
+    } else {
+      document.body.style.overflow = "hidden";
+    }
+  }, [index]);
+
   const list = phList.map((item, ind) => {
     return (
       <div className="item" key={nanoid()}>
