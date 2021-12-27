@@ -39,7 +39,11 @@ export default function Photos() {
           </strong>
         </div>
         <div className="list">
-          {isLoading ? <img id="loader" src={loadingImg} alt="Loading"></img> : list}
+          {isLoading ? (
+            <img id="loader" src={loadingImg} alt="Loading"></img>
+          ) : (
+            list
+          )}
         </div>
         <div className="footer">
           <a

@@ -60,7 +60,7 @@ export default function Modal(props) {
   }
 
   return (
-    <div className="modal">
+    <div className="modal" style={{ top: `${window.pageYOffset}px` }}>
       <div className="modalBody">
         <div className="modalImgPlusInfo">
           <div id="wrp">
