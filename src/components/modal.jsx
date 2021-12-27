@@ -1,8 +1,9 @@
 // import { nanoid } from "nanoid";
-import "./photos.css";
-import Close from "./img/Close.png";
 import React, { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
+import Close from "./img/Close.png";
+import "./photos.css";
+import "./modal.css";
 
 export default function Modal(props) {
   const link = `https://picsum.photos/id/${props.item.id}/600/400`;
@@ -62,10 +63,12 @@ export default function Modal(props) {
     <div className="modal">
       <div className="modalBody">
         <div className="modalImgPlusInfo">
-          <div className="modalImg">
-            <img src={link} alt={link}></img>
+          <div id="wrp">
+            <div className="modalImg">
+              <img src={link} alt={link}></img>
+            </div>
+            <div className="comments">{comments}</div>
           </div>
-          <div className="comments">{comments}</div>
           <div className="close">
             <img
               onClick={() => props.setIndex(-1)}
